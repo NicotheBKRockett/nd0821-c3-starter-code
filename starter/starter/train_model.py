@@ -3,9 +3,10 @@
 from sklearn.model_selection import train_test_split
 
 # Add the necessary imports for the starter code.
-
+import pandas as pd
 # Add code to load in the data.
-
+data = pd.read_csv("cleaned_data_dropna.csv")
+print(data.info())
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
 
