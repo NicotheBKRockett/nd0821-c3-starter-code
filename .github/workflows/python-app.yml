@@ -5,10 +5,8 @@ name: Python application
 
 on:
   push:
-    paths:
-      - main.py
 
-    #branches: [ "master" ]
+    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
