@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 # Add the necessary imports for the starter code.
 import pandas as pd
 from ml.data import process_data
+from ml.model import train_model, compute_model_metrics
 from sklearn.preprocessing import OneHotEncoder
 # Add code to load in the data.
 data = pd.read_csv("cleaned_data_dropna.csv")
@@ -31,3 +32,6 @@ X_test, y_test, _, _ = process_data(
     test, categorical_features=cat_features, label="salary", training=True
 )
 # Train and save a model.
+Logistic_regression = train_model(X_train,y_train)
+predictions = Logistic_regression.predict(X_train)
+#print(predictions)
