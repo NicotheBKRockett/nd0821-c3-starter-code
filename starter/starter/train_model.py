@@ -35,6 +35,23 @@ X, y, encoder, lb = process_data(
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+save = False
+
+if save:
+    variables_to_save = {
+        'X_train': X_train,
+        'X_test': X_test,
+        'y_train': y_train,
+        'y_test': y_test
+    }
+
+    # Specify the file name
+    pickle_file_name = 'saved_variables.pkl'
+
+    # Save the variables to a pickle file
+    with open(pickle_file_name, 'wb') as file:
+        pickle.dump(variables_to_save, file)
+
 # Train and save a model.
 train = False
 filename = "my_model.pickle"
