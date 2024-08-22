@@ -49,4 +49,3 @@ def test_traintestratio(data):
     assert len(X_test)/(len(X_test)+len(X_train)) < 0.22
     assert len(X_test) / (len(X_test) + len(X_train)) > 0.18
     logger.info('SUCCES test_traintestratio')
-
