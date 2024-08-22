@@ -42,3 +42,11 @@ def test_metrics(data):
     assert fbeta <= 0.2
     logger.info('SUCCES test_metrics: fbeta <= 0.2')
     return
+
+def test_traintestratio(data):
+    X_train, X_test, y_train, y_test = data
+
+    assert len(X_test)/(len(X_test)+len(X_train)) < 0.22
+    assert len(X_test) / (len(X_test) + len(X_train)) > 0.18
+    logger.info('SUCCES test_traintestratio')
+
