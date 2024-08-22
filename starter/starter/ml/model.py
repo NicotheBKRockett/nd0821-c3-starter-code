@@ -1,4 +1,5 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
+from sklearn import svm
 from sklearn.linear_model import LogisticRegression
 
 
@@ -19,7 +20,10 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
 
-    trained_model = LogisticRegression(random_state=42).fit(X_train, y_train)
+    #trained_model = LogisticRegression(random_state=42).fit(X_train, y_train)
+    clf = svm.SVC(kernel='rbf', gamma=10)
+    clf.fit(X_train, y_train)
+    trained_model = clf
     return trained_model
 
 
@@ -59,4 +63,8 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    pass
+
+    model = model
+    predictions = model.predict(X)
+
+    return predictions

@@ -5,8 +5,9 @@ from sklearn.model_selection import train_test_split
 # Add the necessary imports for the starter code.
 import pandas as pd
 from ml.data import process_data
-from ml.model import train_model, compute_model_metrics
+from ml.model import train_model, compute_model_metrics, inference
 from ydata_profiling import ProfileReport
+import pickle
 
 from sklearn.preprocessing import OneHotEncoder
 # Add code to load in the data.
@@ -39,8 +40,17 @@ X, y, encoder, lb = process_data(
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Train and save a model.
-Logistic_regression = train_model(X_train,y_train)
-#print(X_test.shape)
-#print(X_train.shape)
-predictions = Logistic_regression.predict(X_test)
-#print(predictions)
+train = False
+filename = "my_model.pickle"
+
+if train == True:
+    model = train_model(X_train,y_train)
+
+    # save model
+    pickle.dump(model, open(filename, "wb"))
+else:
+    model = pickle.load(open(filename, "rb"))
+
+predictions_X_test = inference(model, X_test)
+precision, recall, fbeta = compute_model_metrics(y_test, predictions_X_test)
+print(precision, recall, fbeta)
