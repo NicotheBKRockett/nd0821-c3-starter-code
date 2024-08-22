@@ -9,6 +9,7 @@ from ml.model import train_model, compute_model_metrics, inference
 from ydata_profiling import ProfileReport
 import pickle
 
+
 from sklearn.preprocessing import OneHotEncoder
 # Add code to load in the data.
 data = pd.read_csv("cleaned_data_dropna.csv")
