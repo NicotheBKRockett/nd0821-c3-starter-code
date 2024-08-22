@@ -16,11 +16,6 @@ data = pd.read_csv("cleaned_data_dropna.csv")
 #print(data.info())
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 
-# EDA
-
-#profile = ProfileReport(data, title="Profiling Report")
-#print(profile)
-
 cat_features = [
     "workclass",
     "education",
