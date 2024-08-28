@@ -83,6 +83,7 @@ async def inference_data(data: Item):
     ]
     data = pd.DataFrame(data)
     X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=False, encoder=None, lb=None)
+    print(X)
     predictions = inference(model, X)
     return {'response': predictions}
 
