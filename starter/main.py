@@ -1,17 +1,7 @@
-import logging
-import numpy as np
-logger = logging.getLogger(__name__)
-logging.basicConfig(filename='myapp.log', level=logging.INFO)
-
 import pandas as pd
 from pydantic import BaseModel
 import pickle
 from joblib import load
-import json
-
-#def foo(a: Union[list,str], b: int = 5) -> str:
-#    pass
-
 from fastapi import FastAPI
 
 try:
@@ -61,12 +51,10 @@ class Item(BaseModel):
 
 # Instantiate the app.
 app = FastAPI()
-
 # Define a GET on the specified endpoint.
 @app.get("/")
 async def say_hello():
     return {"greeting": "Hello dear user! Welcome at the third project of the Udacity ML DevOps Nanodegree Program. I am Nicolas Delay"}
-
 
 @app.post("/data_inference/")
 async def inference_data(data: Item):

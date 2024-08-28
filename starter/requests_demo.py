@@ -3,9 +3,6 @@ import requests
 import json
 import os
 
-
-from starter.ml.data import process_data
-
 url = 'https://nd0821-c3-starter-code-7d5l.onrender.com/data_inference/'
 
 

@@ -1,18 +1,12 @@
 from fastapi.testclient import TestClient
-
 from main import app
 import json
-import pandas as pd
-import os
-
-
 client = TestClient(app)
 
 def test_say_hello():
     r = client.get("/")
     assert r.status_code == 200
     assert r.json() == {"greeting": "Hello dear user! Welcome at the third project of the Udacity ML DevOps Nanodegree Program. I am Nicolas Delay"}
-
 
 def test_inference_data_high():
 
@@ -36,7 +30,6 @@ def test_inference_data_high():
     print(request.status_code)
     assert request.status_code == 200
     assert request.json() == {'response': [1]}
-
 
 def test_inference_data_low():
     data = {
