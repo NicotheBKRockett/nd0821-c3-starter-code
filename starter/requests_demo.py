@@ -12,7 +12,7 @@ print(cwd)
 
 data = pd.read_csv(cwd+'\starter\cleaned_data_dropna.csv')
 
-data = data.iloc[2][1:-1]
+data = data.iloc[2][1:-1].to_dict()
 print(data)
 
 r = requests.post(url, data=data)
