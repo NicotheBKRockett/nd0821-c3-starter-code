@@ -7,6 +7,7 @@ import pandas as pd
 from pydantic import BaseModel
 import pickle
 from joblib import load
+import json
 
 #def foo(a: Union[list,str], b: int = 5) -> str:
 #    pass
@@ -82,15 +83,12 @@ async def inference_data(data: Item):
         "native_country",
     ]
     encoder = load("starter/encoder.joblib")
-    lb =  load("starter/lb.joblib")
+    lb = load("starter/lb.joblib")
 
-    data = pd.DataFrame.from_dict(data)
+    data = pd.DataFrame([data.dict()])
 
     X, _, _, _ = process_data(data, cat_features, label=None, training=False, encoder=encoder, lb=lb)
     prediction = inference(model, X)
-
-    #X, _, _, _ = process_data(df_temp, categorical_features=cat_features, label='salary', training=False, encoder=encoder, lb=lb)
-    #logging.info(X)
-    predictions = inference(model, X)
-    return {'response': prediction}
+    prediction_list = prediction.tolist()
+    return {'response': prediction_list}
 

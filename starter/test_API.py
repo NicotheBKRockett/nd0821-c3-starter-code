@@ -17,46 +17,48 @@ def test_say_hello():
 def test_inference_data_high():
 
     data = {
-        'age': 33,
+        'age': 52,
         'workclass': 'Local-gov',
-        'fnlgt': 198183,
-        'education': 'Bachelors',
+        'fnlgt': 78654,
+        'education': 'Doctorate',
         'education_num': 13,
-        'marital_status': 'Never-married',
-        'occupation': 'Prof-specialty',
+        'marital_status': 'Married',
+        'occupation': 'Exec-managerial',
         'relationship': 'Not-in-family',
         'race': 'White',
-        'sex': 'Female',
+        'sex': 'Male',
         'capital_gain': 0,
         'capital_loss': 0,
         'hours_per_week': 50,
         'native_country': 'United-States'
     }
     request = client.post("/data_inference/", data=json.dumps(data))
+    print(request.status_code)
     assert request.status_code == 200
-    #assert request.json() == " >50K"
+    assert request.json() == {'response': [1]}
 
 
 def test_inference_data_low():
     data = {
-        'age': 39,
+        'age': 22,
         'workclass': 'State-gov',
-        'fnlgt': 77516,
+        'fnlgt': 42160,
         'education': 'Bachelors',
         'education_num': 13,
-        'marital_status': 'Never-married',
+        'marital_status': 'Divorced',
         'occupation': 'Adm-clerical',
         'relationship': 'Not-in-family',
-        'race': 'White',
-        'sex': 'Male',
+        'race': 'Black',
+        'sex': 'Female',
         'capital_gain': 2174,
         'capital_loss': 0,
-        'hours_per_week': 40,
+        'hours_per_week': 25,
         'native_country': 'United-States'
     }
     request = client.post("/data_inference/", data=json.dumps(data))
+    print(request.status_code)
     assert request.status_code == 200
-    #assert request.json() == " <=50K"
+    assert request.json() == {'response': [0]}
 
 
 
