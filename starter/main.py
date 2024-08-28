@@ -1,7 +1,7 @@
-# Put the code for your API here.
-#print("Test 7")
+import logging
 
-from typing import Union
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 import pandas as pd
 from pydantic import BaseModel
@@ -83,7 +83,7 @@ async def inference_data(data: Item):
     ]
     data = pd.DataFrame(data)
     X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=False, encoder=None, lb=None)
-    print(X)
+    logging.info(X)
     predictions = inference(model, X)
     return {'response': predictions}
 
