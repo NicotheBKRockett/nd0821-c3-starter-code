@@ -9,8 +9,14 @@ import pickle
 #    pass
 
 from fastapi import FastAPI
-from starter.starter.ml.model import inference
-from starter.starter.ml.data import process_data
+
+try:
+    from starter.ml.model import inference
+    from starter.ml.data import process_data
+except ImportError:
+    # Handle the case where the imports might be nested differently
+    from starter.starter.ml.model import inference
+    from starter.starter.ml.data import process_data
 
 class Item(BaseModel):
     workclass: str
