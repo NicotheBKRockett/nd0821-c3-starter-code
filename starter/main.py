@@ -81,8 +81,8 @@ async def inference_data(data: Item):
         "sex",
         "native_country",
     ]
-    encoder = load("model/encoder.joblib")
-    lb =  load("model/lb.joblib")
+    encoder = load("starter/encoder.joblib")
+    lb =  load("starter/lb.joblib")
 
     array = np.array([[
         data.age,
