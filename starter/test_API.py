@@ -12,7 +12,7 @@ def test_inference_data_high():
 
     data = {
         'age': 52,
-        'workclass': 'Local-gov',
+        'workclass': 'Private',
         'fnlgt': 78654,
         'education': 'Doctorate',
         'education_num': 13,
