@@ -19,38 +19,38 @@ except ImportError:
     from starter.starter.ml.data import process_data
 
 class Item(BaseModel):
+    age: int
     workclass: str
+    fnlgt: int
     education: str
+    education_num: int
     marital_status: str
     occupation: str
     relationship: str
     race: str
     sex: str
-    native_country: str
-    age: int
-    fnlwgt: int
-    education_num: int
     capital_gain: int
     capital_loss: int
     hours_per_week: int
+    native_country: str
 
     class Config:
         schema_extra = {
             "example": {
                 "age": 43,
-                "workclass": 'State-gov',
+                "workclass": "State-gov",
                 "fnlgt": 77516,
-                "education": 'Bachelors',
-                "education_num": 17,
+                "education": "Bachelors",
+                "education_num": 6723,
                 "marital_status": "Never-married",
                 "occupation": "Tech-support",
                 "relationship": "Unmarried",
                 "race": "White",
-                "sex": "FMale",
-                "capital_gain": 2000,
+                "sex": "Male",
+                "capital_gain": 0,
                 "capital_loss": 0,
-                "hours_per_week": 35,
-                "native_country": 'United-States'
+                "hours_per_week": 40,
+                "native_country": "United-States"
             }
         }
 
