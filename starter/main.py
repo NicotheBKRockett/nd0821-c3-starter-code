@@ -84,40 +84,13 @@ async def inference_data(data: Item):
     encoder = load("starter/encoder.joblib")
     lb =  load("starter/lb.joblib")
 
-    array = np.array([[
-        data.age,
-        data.workclass,
-        data.fnlgt,
-        data.education,
-        data.marital_status,
-        data.occupation,
-        data.relationship,
-        data.race,
-        data.sex,
-        data.capital_gain,
-        data.capital_loss,
-        data.hours_per_week,
-        data.native_country
-    ]])
+    data = pd.DataFrame.from_dict(data)
 
-    df_temp = pd.DataFrame(data=array, columns=[
-        "age",
-        "workclass",
-        "fnlgt",
-        "education",
-        "marital_status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "capital_gain",
-        "capital_loss",
-        "hours_per_week",
-        "native_country",
-    ])
+    X, _, _, _ = process_data(data, cat_features, label=None, training=False, encoder=encoder, lb=lb)
+    prediction = inference(model, X)
 
-    X, _, _, _ = process_data(df_temp, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
-    logging.info(X)
+    #X, _, _, _ = process_data(df_temp, categorical_features=cat_features, label='salary', training=False, encoder=encoder, lb=lb)
+    #logging.info(X)
     predictions = inference(model, X)
-    return {'response': predictions}
+    return {'response': prediction}
 

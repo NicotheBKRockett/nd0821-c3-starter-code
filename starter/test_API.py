@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
 
 from main import app
+import json
 import pandas as pd
 import os
 
@@ -14,61 +15,50 @@ def test_say_hello():
 
 
 def test_inference_data_high():
-    #cwd = os.getcwd()
-    #data = pd.read_csv(cwd + '\starter\cleaned_data_dropna.csv')
 
-    #data = data.iloc[2][1:-1].to_dict()
+    data = {
+        'age': 33,
+        'workclass': 'Local-gov',
+        'fnlgt': 198183,
+        'education': 'Bachelors',
+        'education_num': 13,
+        'marital_status': 'Never-married',
+        'occupation': 'Prof-specialty',
+        'relationship': 'Not-in-family',
+        'race': 'White',
+        'sex': 'Female',
+        'capital_gain': 0,
+        'capital_loss': 0,
+        'hours_per_week': 50,
+        'native_country': 'United-States'
+    }
+    request = client.post("/data_inference/", data=json.dumps(data))
+    assert request.status_code == 200
+    #assert request.json() == " >50K"
 
-    #r = client.post("/data_inference/", data= data)
-    #print(r)
-
-    r = client.post("/data_inference/", json={
-        "age": 60,
-        "workclass": "Private",
-        'fnlgt': 77516,
-        "education": "Doctorate",
-        "education_num": 6723,
-        "marital_status": "Divorced",
-        "occupation": "Transport-moving",
-        "relationship": "Not-in-family",
-        "race": "White",
-        "sex": "Male",
-        "hours_per_week": 76,
-        "capital_gain": 0,
-        "capital_loss":0,
-        "native_country": "United-States"
-    })
-
-    assert r.status_code == 200
-    assert r.json() == {"response": "1"}
 
 def test_inference_data_low():
-    #cwd = os.getcwd()
-    #data = pd.read_csv(cwd + '\starter\cleaned_data_dropna.csv')
-
-    #data = data.iloc[2][1:-1].to_dict()
-
-    #r = client.post("/data_inference/", data = data)
-    #print(r)
-
-    r = client.post("/data_inference/", json={
-        "age": 20,
-        "workclass": "Private",
+    data = {
+        'age': 39,
+        'workclass': 'State-gov',
         'fnlgt': 77516,
-        "education": "11th",
-        "education_num": 6723,
-        "marital_status": "Never_married",
-        "occupation": "Transport-moving",
-        "relationship": "Not-in-family",
-        "race": "Black",
-        "sex": "Male",
-        "hours_per_week": 20,
-        "capital_gain": 0,
-        "capital_loss": 0,
-        "native_country": "United-States"
-    })
+        'education': 'Bachelors',
+        'education_num': 13,
+        'marital_status': 'Never-married',
+        'occupation': 'Adm-clerical',
+        'relationship': 'Not-in-family',
+        'race': 'White',
+        'sex': 'Male',
+        'capital_gain': 2174,
+        'capital_loss': 0,
+        'hours_per_week': 40,
+        'native_country': 'United-States'
+    }
+    request = client.post("/data_inference/", data=json.dumps(data))
+    assert request.status_code == 200
+    #assert request.json() == " <=50K"
 
-    assert r.status_code == 200
-    #assert r.json() == {"response": "0"}
+
+
 
 

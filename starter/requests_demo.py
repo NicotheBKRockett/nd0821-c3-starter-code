@@ -14,7 +14,7 @@ print(cwd)
 data = pd.read_csv(cwd+'\starter\cleaned_data_dropna.csv')
 data = data.drop(columns=["Unnamed: 0"])
 
-data = data.iloc[2][:-1].to_dict()
+data = data[:-1].iloc[2].to_dict()
 
 
 r = requests.post(url, data=data)
