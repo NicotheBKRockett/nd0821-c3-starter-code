@@ -64,5 +64,5 @@ async def inference_data(data: Item):
     model = pickle.load(open(filename, "rb"))
     X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=True, encoder=None, lb=None)
     predictions = inference(model, X)
-    return predictions
+    return {'response': predictions}
 
