@@ -14,15 +14,33 @@ def test_say_hello():
 
 
 def test_inference_data_high():
-    cwd = os.getcwd()
-    data = pd.read_csv(cwd + '\starter\cleaned_data_dropna.csv')
+    #cwd = os.getcwd()
+    #data = pd.read_csv(cwd + '\starter\cleaned_data_dropna.csv')
 
-    data = data.iloc[2][1:-1].to_dict()
+    #data = data.iloc[2][1:-1].to_dict()
 
-    r = client.post("/data_inference/", data= data)
-    print(r)
+    #r = client.post("/data_inference/", data= data)
+    #print(r)
+
+    r = client.post("/data_inference/", json={
+        "age": 60,
+        "workclass": "Private",
+        'fnlgt': 77516,
+        "education": "Doctorate",
+        "education_num": 6723,
+        "marital_status": "Divorced",
+        "occupation": "Transport-moving",
+        "relationship": "Not-in-family",
+        "race": "White",
+        "sex": "Male",
+        "hours_per_week": 76,
+        "capital_gain": 0,
+        "capital_loss":0
+        "native_Ccountry": "United-States"
+    })
+
     assert r.status_code == 200
-    #assert r.json() == {"response": "1"}
+    assert r.json() == {"response": "1"}
 
 def test_inference_data_low():
     cwd = os.getcwd()

@@ -116,7 +116,7 @@ async def inference_data(data: Item):
         "native_country",
     ])
 
-    X, _, _, _ = process_data(data, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
+    X, _, _, _ = process_data(df_temp, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
     logging.info(X)
     predictions = inference(model, X)
     return {'response': predictions}
