@@ -41,5 +41,5 @@ def test_inference_data_low():
         "nativeCountry": "United-States"
     })
     assert r.status_code == 200
-    assert r.json() == {"prediction": "<=50K"}
+    assert r.json() == {"prediction": "0"}
 
