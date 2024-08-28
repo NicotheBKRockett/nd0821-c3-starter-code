@@ -2,8 +2,11 @@
 #print("Test 7")
 
 from typing import Union
+
+import pandas as pd
 from pydantic import BaseModel
 import pickle
+from joblib import load
 
 #def foo(a: Union[list,str], b: int = 5) -> str:
 #    pass
@@ -78,6 +81,7 @@ async def inference_data(data: Item):
         "sex",
         "native-country",
     ]
+    data = pd.DataFrame(data)
     X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=False, encoder=None, lb=None)
     predictions = inference(model, X)
     return {'response': predictions}
