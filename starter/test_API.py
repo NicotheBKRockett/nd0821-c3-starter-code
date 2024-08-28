@@ -16,12 +16,12 @@ def test_inference_data_high():
         "age": 60,
         "workclass": "Private",
         "education": "Doctorate",
-        "maritalStatus": "Divorced",
+        "maritalStatus": "Never-married",
         "occupation": "Transport-moving",
-        "relationship": "Not-in-family",
+        "relationship": "Own-child",
         "race": "White",
-        "sex": "Male",
-        "hoursPerWeek": 76,
+        "sex": "Female",
+        "hoursPerWeek": 80,
         "nativeCountry": "United-States"
     })
     assert r.status_code == 200
@@ -29,15 +29,15 @@ def test_inference_data_high():
 
 def test_inference_data_low():
     r = client.post("/", json={
-        "age": 16,
+        "age": 23,
         "workclass": "Private",
         "education": "HS-grad",
-        "maritalStatus": "Never-married",
+        "maritalStatus": "Divorced",
         "occupation": "Other-service",
         "relationship": "Own-child",
         "race": "Black",
         "sex": "Male",
-        "hoursPerWeek": 40,
+        "hoursPerWeek": 30,
         "nativeCountry": "United-States"
     })
     assert r.status_code == 200
