@@ -68,7 +68,17 @@ async def say_hello():
 async def inference_data(data: Item):
     filename = "my_model.pickle"
     model = pickle.load(open(filename, "rb"))
-    X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=True, encoder=None, lb=None)
+    cat_features = [
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country",
+    ]
+    X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=False, encoder=None, lb=None)
     predictions = inference(model, X)
     return {'response': predictions}
 

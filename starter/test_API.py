@@ -14,17 +14,20 @@ def test_say_hello():
 def test_inference_data_high():
 
     r = client.post("/data_inference/", json={
-        "":0,
-        "age": 60,
-        "workclass": "Private",
-        "education": "Doctorate",
-        "maritalStatus": "Never-married",
-        "occupation": "Transport-moving",
-        "relationship": "Own-child",
+        "age": 43,
+        "workclass": "State-gov",
+        "fnlgt": 77516,
+        "education": "Bachelors",
+        "education_num": 6723,
+        "marital_status": "Never-married",
+        "occupation": "Tech-support",
+        "relationship": "Unmarried",
         "race": "White",
-        "sex": "Female",
-        "hoursPerWeek": 80,
-        "nativeCountry": "United-States"
+        "sex": "Male",
+        "capital_gain": 0,
+        "capital_loss": 0,
+        "hours_per_week": 40,
+        "native_country": "United-States"
     })
     print(r)
     assert r.status_code == 200
