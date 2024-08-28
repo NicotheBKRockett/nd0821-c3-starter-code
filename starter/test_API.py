@@ -31,6 +31,8 @@ def test_inference_data_low():
     data = data.iloc[2][1:-1].to_dict()
 
     r = client.post("/data_inference/", data = data)
+    print(r)
     assert r.status_code == 200
     #assert r.json() == {"response": "0"}
+
 

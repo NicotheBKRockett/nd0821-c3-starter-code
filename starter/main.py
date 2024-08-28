@@ -1,5 +1,5 @@
 import logging
-
+import numpy as np
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
@@ -82,8 +82,41 @@ async def inference_data(data: Item):
         "native_country",
     ]
     encoder = load("model/encoder.joblib")
-    data = pd.DataFrame(data)
-    X, _, _, _ = process_data(data, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=None)
+    lb =  load("model/lb.joblib")
+
+    array = np.array([[
+        data.age,
+        data.workclass,
+        data.fnlgt,
+        data.education,
+        data.marital_status,
+        data.occupation,
+        data.relationship,
+        data.race,
+        data.sex,
+        data.capital_gain,
+        data.capital_loss,
+        data.hours_per_week,
+        data.native_country
+    ]])
+
+    df_temp = pd.DataFrame(data=array, columns=[
+        "age",
+        "workclass",
+        "fnlgt",
+        "education",
+        "marital_status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "capital_gain",
+        "capital_loss",
+        "hours_per_week",
+        "native_country",
+    ])
+
+    X, _, _, _ = process_data(data, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
     logging.info(X)
     predictions = inference(model, X)
     return {'response': predictions}
