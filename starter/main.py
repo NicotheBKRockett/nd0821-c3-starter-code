@@ -74,15 +74,16 @@ async def inference_data(data: Item):
     cat_features = [
         "workclass",
         "education",
-        "marital-status",
+        "marital_status",
         "occupation",
         "relationship",
         "race",
         "sex",
-        "native-country",
+        "native_country",
     ]
+    encoder = load("model/encoder.joblib")
     data = pd.DataFrame(data)
-    X, y, encoder, lb = process_data(data, categorical_features=[], label=None, training=False, encoder=None, lb=None)
+    X, _, _, _ = process_data(data, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=None)
     logging.info(X)
     predictions = inference(model, X)
     return {'response': predictions}
