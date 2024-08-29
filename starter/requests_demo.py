@@ -27,7 +27,7 @@ assert r1.status_code == 200
 data=json.dumps(data)
 r = requests.post(url, data=data)
 print(r.status_code)
-print(r.json)
+print(r.json())
 assert r.status_code == 200
 
 
