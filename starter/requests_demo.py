@@ -5,7 +5,6 @@ import os
 
 url = 'https://nd0821-c3-starter-code-7d5l.onrender.com/data_inference/'
 
-
 data = {
     'age': 33,
     'workclass': 'Local-gov',
