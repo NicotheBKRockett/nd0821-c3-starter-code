@@ -30,4 +30,3 @@ assert r.status_code == 200
 
 print("Response code: %s" % r.status_code)
 print("Response body: %s" % r.json())
-
