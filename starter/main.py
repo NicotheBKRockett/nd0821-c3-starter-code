@@ -48,7 +48,6 @@ class Item(BaseModel):
             }
         }
 
-
 # Instantiate the app.
 app = FastAPI()
 # Define a GET on the specified endpoint.
