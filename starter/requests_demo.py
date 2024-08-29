@@ -1,28 +1,26 @@
 import pandas as pd
 import requests
 import json
-import os
 
-url = 'https://nd0821-c3-starter-code-7d5l.onrender.com/data_inference/'
+url = 'https://nd0821-c3-starter-code-0lqu.onrender.com/data_inference/'
 
 data = {
-    'age': 33,
-    'workclass': 'Local-gov',
-    'fnlgt': 198183,
-    'education': 'Bachelors',
-    'education_num': 13,
-    'marital_status': 'Never-married',
-    'occupation': 'Prof-specialty',
-    'relationship': 'Not-in-family',
-    'race': 'White',
-    'sex': 'Female',
-    'capital_gain': 0,
-    'capital_loss': 0,
-    'hours_per_week': 50,
-    'native_country': 'United-States'
-}
-
-r1 = requests.get('https://nd0821-c3-starter-code-7d5l.onrender.com/')
+        'age': 52,
+        'workclass': 'Private',
+        'fnlgt': 78654,
+        'education': 'Doctorate',
+        'education_num': 13,
+        'marital_status': 'Married',
+        'occupation': 'Exec-managerial',
+        'relationship': 'Not-in-family',
+        'race': 'White',
+        'sex': 'Male',
+        'capital_gain': 0,
+        'capital_loss': 0,
+        'hours_per_week': 50,
+        'native_country': 'United-States'
+    }
+r1 = requests.get('https://nd0821-c3-starter-code-0lqu.onrender.com')
 print(r1.status_code)
 print(r1.json())
 assert r1.status_code == 200
