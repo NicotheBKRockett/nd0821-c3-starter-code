@@ -58,7 +58,7 @@ async def say_hello():
 
 @app.post("/data_inference/")
 async def inference_data(data: Item):
-    filename = "my_model.pkl"
+    filename = "starter/my_model.pkl"
     model = pickle.load(open(filename, "rb"))
     cat_features = [
         "workclass",
