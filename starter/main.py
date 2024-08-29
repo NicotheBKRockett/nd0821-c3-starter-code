@@ -70,8 +70,8 @@ async def inference_data(data: Item):
         "sex",
         "native_country",
     ]
-    encoder = load("starter/starter/encoder.joblib")
-    lb = load("starter/starter/lb.joblib")
+    encoder = load("starter/encoder.joblib")
+    lb = load("starter/lb.joblib")
 
     data = pd.DataFrame([data.dict()])
 
