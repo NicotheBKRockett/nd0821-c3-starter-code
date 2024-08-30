@@ -1,8 +1,13 @@
 from fastapi.testclient import TestClient
 from main import app
 import json
-from starter.ml.model import compute_model_metrics, inference
 import pickle
+try:
+    from starter.ml.model import compute_model_metrics, inference
+except ImportError:
+    from starter.starter.ml.model import compute_model_metrics, inference
+
+
 client = TestClient(app)
 
 def test_say_hello():
