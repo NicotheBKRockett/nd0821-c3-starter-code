@@ -1,6 +1,8 @@
 from fastapi.testclient import TestClient
 from main import app
 import json
+from starter.starter.ml.model import compute_model_metrics, inference
+import pickle
 client = TestClient(app)
 
 def test_say_hello():
@@ -52,6 +54,22 @@ def test_inference_data_low():
     print(request.status_code)
     assert request.status_code == 200
     assert request.json() == {'response': [0]}
+
+
+def test_accuracy():
+    filename = "my_model.pkl"
+    model = pickle.load(open(filename, "rb"))
+
+    pickle_file_name = 'saved_variables.pkl'
+    data = pickle.load(open(pickle_file_name, "rb"))
+    X = data.X_test
+    y = data.y_test
+
+    predictions_X_test = inference(model, X)
+    precision, _, _ = compute_model_metrics(y, predictions_X_test)
+
+    assert precision >= 0.7
+
 
 
 
