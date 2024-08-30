@@ -61,7 +61,11 @@ def test_inference_data_low():
 
 def test_accuracy():
     filename = "my_model.pkl"
-    model = pickle.load(open(filename, "rb"))
+    try:
+        model = pickle.load(open(filename, "rb"))
+    except FileNotFoundError:
+        model = pickle.load(open('starter/'+filename, "rb"))
+
 
     pickle_file_name = 'starter/saved_variables.pkl'
     data = pickle.load(open(pickle_file_name, "rb"))
@@ -76,7 +80,10 @@ def test_accuracy():
 
 def test_recall():
     filename = "my_model.pkl"
-    model = pickle.load(open(filename, "rb"))
+    try:
+        model = pickle.load(open(filename, "rb"))
+    except FileNotFoundError:
+        model = pickle.load(open('starter/'+filename, "rb"))
 
     pickle_file_name = 'starter/saved_variables.pkl'
     data = pickle.load(open(pickle_file_name, "rb"))
@@ -91,7 +98,11 @@ def test_recall():
 
 def test_fbeta():
     filename = "my_model.pkl"
-    model = pickle.load(open(filename, "rb"))
+    try:
+        model = pickle.load(open(filename, "rb"))
+    except FileNotFoundError:
+        model = pickle.load(open('starter/'+filename, "rb"))
+
 
     pickle_file_name = 'starter/saved_variables.pkl'
     data = pickle.load(open(pickle_file_name, "rb"))
